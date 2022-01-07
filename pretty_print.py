@@ -18,18 +18,27 @@ def pretty_print(string, code=0): #string is the number to be printed in string 
 
     nums = list(string)
     insertion_points = [3,7,11,15]
-    nums.reverse()
+
+    #This part is dealing with floating points
     if '.' in nums: 
-        important = len(nums)-1
+        important = len(nums)-3
+        back_end = nums[-3:]
+        nums = nums[:-3]
+        print(nums,'   ',back_end)
     else:
         important = len(nums)
-   
+    #I reverse the nums list here after its already been processed because it can then be algorithmically filled with commas at the right place.
+    # tentative big-O for this step is O(1) due to the size of the insertion_points array
+    nums.reverse()
     for n in insertion_points:
         if n > important:
             break
         nums.insert(n,using)
-    
+    if using == '.':
+        back_end[0] = ','
     nums.reverse()
+    for item in back_end:
+        nums.append(item)
     ans = ''.join(nums)
     print(ans)
    
