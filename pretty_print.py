@@ -15,7 +15,7 @@ def pretty_print(string, code=0): #string is the number to be printed in string 
         using = '.'
     else:
         using = ','
-
+    floatFlag = False
     nums = list(string)
     insertion_points = [3,7,11,15]
 
@@ -24,7 +24,9 @@ def pretty_print(string, code=0): #string is the number to be printed in string 
         important = len(nums)-3
         back_end = nums[-3:]
         nums = nums[:-3]
-        print(nums,'   ',back_end)
+
+        floatFlag = True
+        #print(nums,'   ',back_end) DEBUGGING
     else:
         important = len(nums)
     #I reverse the nums list here after its already been processed because it can then be algorithmically filled with commas at the right place.
@@ -37,8 +39,9 @@ def pretty_print(string, code=0): #string is the number to be printed in string 
     if using == '.':
         back_end[0] = ','
     nums.reverse()
-    for item in back_end:
-        nums.append(item)
+    if floatFlag:   
+        for item in back_end:
+            nums.append(item)
     ans = ''.join(nums)
     print(ans)
    

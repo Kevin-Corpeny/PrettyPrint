@@ -21,11 +21,14 @@ with open("prices_"+str(datetime.today())[:-16]+".txt","w") as fout:
         soup = BeautifulSoup(html) #soupify
         price = soup.find(class_="priceValue") #grab the element we want
 
-        p.pretty_print(price.string)
+        
         priceValue = int(price.string[1:3]+price.string[4:7])
+        print(priceValue)
+        p.pretty_print(str(priceValue))
+        
+
         if priceValue == prev_priceValue:
             continue
-        p.pretty_print(price.string)
         print("  :  "+str(datetime.fromtimestamp(time.time()))[:-7]+" ("+str(priceValue-prev_priceValue)+")"+"\n")
     
         prev_priceValue = priceValue
